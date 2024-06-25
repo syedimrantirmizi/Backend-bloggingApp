@@ -6,7 +6,7 @@ import { getUserController } from "../Controller/userController.js";
 
 const route = express.Router();
 
-route.post("/api/signup",informationController, signupController);
+route.post("/api/signup", signupController);
 route.post("/api/login", loginController);
 route.post("/api/otpverify", OTPVerification);
 
@@ -19,3 +19,4 @@ route.put("/api/updatepost/:id", informationController, updatePostController)
 route.delete("/api/deletepost/:id", informationController, deletePostController)
 
 export default route
+

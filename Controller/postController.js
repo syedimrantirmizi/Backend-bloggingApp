@@ -102,9 +102,7 @@ export const updatePostController = async (request, response) => {
         data: [],
       });
     }
-    const postRes = await Postmodel.findByIdAndUpdate(postID, obj, {
-      new: true,
-    });
+    const postRes = await Postmodel.findByIdAndUpdate(postID, obj);
     response.json({
       message: "post updated",
       data: postRes,
