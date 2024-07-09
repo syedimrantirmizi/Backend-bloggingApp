@@ -1,0 +1,4 @@
+JWT_PRIVATEKEY = your privatekey
+MONGODB_URI = your mongodb uri
+email = your email
+pass = your app password

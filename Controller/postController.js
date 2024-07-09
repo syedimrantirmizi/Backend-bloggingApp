@@ -14,7 +14,30 @@ export const getPostController = async (request, response) => {
     response.status(500).json({
       message: error.message,
       data: obj,
+      status: false,
+    });
+  }
+};
+export const getPostOwnerController = async (request, response) => {
+  try {
+    const token = request.headers.authorization.split(" ")[1];
+    const auth = jwt.verify(token, process.env.JWT_PRIVATEKEY);
+    const { _id } = request.body;
+    const postOwner = await UserModel.findById(_id)
+      .select("-password")
+      .select("-userType")
+      .select("-isVerified")
+      .select("-__v");
+    response.json({
+      message: "hello",
+      data: postOwner,
       status: true,
+    });
+  } catch (error) {
+    response.status(500).json({
+      message: error.message,
+      data: obj,
+      status: false,
     });
   }
 };
@@ -31,14 +54,14 @@ export const getownPostController = async (request, response) => {
     response.status(500).json({
       message: error.message,
       data: obj,
-      status: true,
+      status: false,
     });
   }
 };
 export const createPostController = async (request, response) => {
   try {
     const token = request.headers.authorization.split(" ")[1];
-    const { _id } = jwt.verify(token,process.env.JWT_PRIVATEKEY);
+    const { _id } = jwt.verify(token, process.env.JWT_PRIVATEKEY);
     const { title, desc } = request.body;
     const createRes = await Postmodel.create({
       postOwner: _id,
@@ -54,14 +77,14 @@ export const createPostController = async (request, response) => {
     response.status(500).json({
       message: error.message,
       data: [],
-      status: true,
+      status: false,
     });
   }
 };
 export const deletePostController = async (request, response) => {
   try {
     const token = request.headers.authorization.split(" ")[1];
-    const { _id } = jwt.verify(token,process.env.JWT_PRIVATEKEY);
+    const { _id } = jwt.verify(token, process.env.JWT_PRIVATEKEY);
     const postID = request.params.id;
     const deleteRes = await Postmodel.findById(postID);
     if (_id != deleteRes.postOwner) {
@@ -80,14 +103,14 @@ export const deletePostController = async (request, response) => {
     response.status(500).json({
       message: error.message,
       data: [],
-      status: true,
+      status: false,
     });
   }
 };
 export const updatePostController = async (request, response) => {
   try {
     const token = request.headers.authorization.split(" ")[1];
-    const { _id } = jwt.verify(token,process.env.JWT_PRIVATEKEY);
+    const { _id } = jwt.verify(token, process.env.JWT_PRIVATEKEY);
     const { title, desc } = request.body;
     const obj = {
       title,
@@ -112,7 +135,7 @@ export const updatePostController = async (request, response) => {
     response.status(500).json({
       message: error.message,
       data: [],
-      status: true,
+      status: false,
     });
   }
 };

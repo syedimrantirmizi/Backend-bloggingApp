@@ -79,7 +79,7 @@ export const loginController = async (request, response) => {
       });
       return;
     }
-    console.log(user.password, password)
+    console.log(user.password, password);
     const passCompare = await bcrypt.compare(password, user.password);
     if (!passCompare) {
       response.status(400).json({
@@ -109,14 +109,14 @@ export const loginController = async (request, response) => {
 export const OTPVerification = async (request, response) => {
   try {
     const { otp, email } = request.body;
-    if ( !email) {
+    if (!email) {
       response.status(400).json({
         message: "No email found",
         status: false,
       });
       return;
     }
-    if ( !otp) {
+    if (!otp) {
       response.status(400).json({
         message: "Required field missing",
         status: false,
