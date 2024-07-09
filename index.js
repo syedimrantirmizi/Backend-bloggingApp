@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: "*" }));
 
 app.use(route);
-
 app.listen(PORT, () => {
   console.log(`Server Running on https://localhost:${PORT}`);
 });
+

@@ -1,17 +1,21 @@
 import mongoose from "mongoose";
 
 const PostSchema = new mongoose.Schema({
-  title : {
-    type : String,
-    required : true,
+  title: {
+    type: String,
+    required: true,
   },
-  postOwner : {
-    type : String,
-    required : true,
+  postOwner: {
+    type: String,
+    required: true,
   },
-  desc : {
-    type : String,
-    required : true,
+  desc: {
+    type: String,
+    required: true,
+  },
+  likesCount: {
+    type: Number,
+    default: 0,
   },
 });
 
